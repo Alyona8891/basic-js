@@ -20,14 +20,8 @@ function createDreamTeam(members) {
   }
   let result = '';
   const filterMembers = members.filter(e => typeof(e) === 'string');
-  let arrTrim = [];
-  for(let i = 0; i < filterMembers.length; i++) {
-    arrTrim.push(filterMembers[i].trim().toUpperCase());
-  }
-  const sortArr = arrTrim.sort();
-  for(let j=0; j<sortArr.length; j++) {
-    result += sortArr[j][0];
-  }
+  const arrTrimSort = filterMembers.map((e) => e.trim().toUpperCase()).sort();
+  arrTrimSort.forEach(e => result += e[0]);
   return result;
 }
 
