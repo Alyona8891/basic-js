@@ -16,7 +16,7 @@ function getSeason(date) {
   if (date === undefined) {
     return 'Unable to determine the time of year!';
   }
-  if(Object.prototype.toString.call(date) !== '[object Date]' && !(date instanceof Date)) {
+  if(!(date instanceof Date) || date.toString() == Date.prototype.toString.call(new Date())) {
     throw new Error ('Invalid date!');
   }
   let month = date.getMonth();
@@ -29,16 +29,11 @@ function getSeason(date) {
       return "summer";
     } else if (month <= 10) {
       return "autumn";
-    } 
+    }
   } else {
     throw new Error ('Invalid date!');
   }
-
-  }
-
-  
-
-
+}
 module.exports = {
   getSeason
 }
