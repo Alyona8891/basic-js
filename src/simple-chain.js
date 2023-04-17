@@ -11,18 +11,18 @@ const chainMaker = {
   },
   addLink(value) {
     //throw new NotImplementedError('Not implemented');
-    value = value.toString();
-    if(value) {
-      this.chain.push(value);
-    } else {
-      this.chain.push('()');
-    }
+    this.chain.push(`( ${value} )`);
     return this;
   },
   removeLink(position) {
     //throw new NotImplementedError('Not implemented');
-    this.chain.splice(position - 1, 1);
-    return this;
+    if(position > 0 && position <= this.chain.length - 1) {
+      this.chain.splice(position - 1, 1);
+      return this;
+    } else {
+      this.chain = [];
+      throw new Error ("You can\'t remove incorrect link!");
+    }
   },
   reverseChain() {
     //throw new NotImplementedError('Not implemented');
