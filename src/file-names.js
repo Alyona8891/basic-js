@@ -17,23 +17,26 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function renameFiles(names) {
   //throw new NotImplementedError('Not implemented');
+  let obj = {};
   let arr = [];
+
   names.forEach((el) => {
-    
     if (arr.length === 0) {
       arr.push(el);
+      obj.el = 0;
     } else {
-      let k = 0;
       if(arr.includes(el)) {
-        k += 1; 
-        arr.push(`${el}(${k})`);
+        obj.el +=1;
+        obj[`${el}(${obj.el})`] = 0;
+        arr.push(`${el}(${obj.el})`);
       } else {
+        obj.el = 0;
         arr.push(el);
       }
     }
   })
-  return arr;
 
+  return arr;
 }
 
 module.exports = {
